@@ -1,9 +1,6 @@
 import java.util.Scanner;
 import java.io.*;
 
-
-// public int lentgh();
-
 public class Lab1{
     public static void main(String[] args){
         Scanner vvod = new Scanner(System.in);
@@ -11,13 +8,17 @@ public class Lab1{
         int n = vvod.nextInt();
         if (n == 1)
             zadanie1();
+        else
+            System.out.print("Invalid number\n");
+            return ;
     }
+
 
     public static void zadanie1()
     {
         int x;
         int y;
-        int col = 5;
+        int col = 6;
         int i = 0;
         Scanner vvod = new Scanner(System.in);
         System.out.print("Введите сообщение, которое нужно зашифровать\n");
@@ -28,8 +29,6 @@ public class Lab1{
             line = len / col + 1;
         else
             line = len / col;
-        // System.out.printf("%d\n", len);
-        // System.out.printf("%d\n", line);
         char[] word = new char[len];
         char[][] array = new char[col][line];
         while (i < len)
@@ -62,24 +61,59 @@ public class Lab1{
             x = 0;
             while (x < col)
             {
-                System.out.printf("%c", array[x][y]);
+                System.out.printf("%c ", array[x][y]);
                 x++;
             }
             System.out.printf("\n");
             y++;
         }
         System.out.printf("\n");
+        char [] new_arr = new char[col * line];
+        x = 0;
+        int x1 = 0;
+        while (x < col)
+        {
+            y = line - 1;
+            while (y >= 0)
+            {
+                new_arr[x1] = array[x][y];
+                x1++;
+                y--;
+            }
+            x++;
+        }
+        x1 = 0;
+        while (x1 < line * col)
+        {
+            System.out.printf("%c", new_arr[x1]);
+            x1++;
+        }
+        System.out.printf("\n");
+        x1 = 0;
         x = 0;
         while (x < col)
         {
             y = line - 1;
             while (y >= 0)
             {
-                System.out.printf("%c ", array[x][y]);
+                array[x][y] = new_arr[x1];
                 y--;
+                x1++;
+            }
+            x++;
+        }
+        System.out.printf("\n");
+        y = 0;
+        while (y < line)
+        {
+            x = 0;
+            while (x < col)
+            {
+                System.out.printf("%c ", array[x][y]);
+                x++;
             }
             System.out.printf("\n");
-            x++;
+            y++;
         }
     } 
 }
