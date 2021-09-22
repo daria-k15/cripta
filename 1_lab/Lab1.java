@@ -3,6 +3,7 @@ import java.util.Scanner;
 
 
 
+
 public class Lab1{
     public static void main(String[] args){
         Scanner vvod = new Scanner(System.in);
@@ -127,16 +128,8 @@ public class Lab1{
         vvod.close();
     } 
 
-    public static void zadanie2()
+    public static String encrypt(String str, int n)
     {
-        Scanner vvod_str = new Scanner(System.in);
-        Scanner vvod_int = new Scanner(System.in);
-        System.out.print("Задание 2\n");
-        System.out.print("Введите сдвиг\n");
-        int n = vvod_int.nextInt();
-        System.out.print("Введите сообщение, которое нужно зашифровать\n");
-        String str = vvod_str.nextLine();
-        System.out.printf("\n");
         int i = 0;
         int len = str.length();
         char[] word = new char[len];
@@ -152,104 +145,74 @@ public class Lab1{
             if (word[i] > 64 && word[i] < 91)
             {
                 if (word[i] + n > 90)
-                    encrypt_w[i] = (char)(65 + n - 1);
+                    encrypt_w[i] = (char)(word[i] + n - 26);
                 else
-                    encrypt_w[i] = (char)(word[i] + n - 1);
+                {
+                    if (word[i] + n < 65)
+                        encrypt_w[i] = (char)(word[i] + n + 26);
+                    else
+                        encrypt_w[i] = (char)(word[i] + n);
+                }
             }
             else if (word[i] > 96 && word[i] < 123)
             {
                 if (word[i] + n > 123)
-                    encrypt_w[i] = (char)(97 + n - 1);
+                    encrypt_w[i] = (char)(word[i] + n - 26);
                 else
-                    encrypt_w[i] = (char)(word[i] + n - 1);
+				{
+					if(word[i] + n < 97)
+						encrypt_w[i] = (char)(word[i] + n + 26);
+					else
+						encrypt_w[i] = (char)(word[i] + n);
+				}
             }
             else if (word[i] > 1071 && word[i] < 1104)
             {
-                if (word[i] + n > 1104)
-                    encrypt_w[i] = (char)(1071 + n - 1);
+                if (word[i] + n > 1103)
+                    encrypt_w[i] = (char)(word[i] + n - 32);
                 else
-                    encrypt_w[i] = (char)(word[i] + n - 1);
+				{
+					if(word[i] + n < 1072)
+                    	encrypt_w[i] = (char)(word[i] + n + 32);
+					else
+						encrypt_w[i] = (char)(word[i] + n);
+				}
             }
             else if (word[i] > 1039 && word[i] < 1072)
             {
-                if (word[i] + n > 1072)
-                    encrypt_w[i] = (char)(1040 + n -1);
+                if (word[i] + n > 1071)
+                    encrypt_w[i] = (char)(word[i] + n - 32);
                 else
-                    encrypt_w[i] = (char)(word[i] + n - 1);
+				{
+					if (word[i] < 1039)
+                    	encrypt_w[i] = (char)(word[i] + n + 32);
+					else
+						encrypt_w[i] = (char)(word[i] + n);
+				}
             }
             else
-                encrypt_w[i] = (char)(word[i] + n - 1);
+                encrypt_w[i] = word[i];
             i++;
         }
-        i = 0;
-        int code;
-        while (i < len)
-        {
-            code = (int)word[i];
-            System.out.printf("%d ", code);
-            i++;
-        }
-        i = 0;
-        while (i < len)
-        {
-            System.out.printf("%c", encrypt_w[i]);
-            i++;
-        }
-        System.out.print("\n");
+        str = String.valueOf(encrypt_w);
+        return (str);
+    }
+
+
+    public static void zadanie2()
+    {
+        Scanner vvod_str = new Scanner(System.in);
+        Scanner vvod_int = new Scanner(System.in);
+        System.out.print("Задание 2\n");
+        System.out.print("Введите сдвиг\n");
+        int n = vvod_int.nextInt();
+        System.out.print("Введите сообщение, которое нужно зашифровать\n");
+        String str = vvod_str.nextLine();
         System.out.printf("\n");
-        i = 0;
-        while (i < len)
-        {
-            if (encrypt_w[i] > 64 && encrypt_w[i] < 91)
-            {
-                if (encrypt_w[i] + n > 90)
-                    word[i] = (char)(91 - n + 1);
-                else
-                    word[i] = (char)(encrypt_w[i] - n + 1);
-            }
-            else if (encrypt_w[i] > 96 && encrypt_w[i] < 123)
-            {
-                if (encrypt_w[i] + n > 122)
-                    word[i] = (char)(123 - n + 1);
-                else if (encrypt_w[i] - n < 97)
-                {
-                    System.out.printf("%d\n", encrypt_w[i] - n + 1);
-                    word[i] = (char)(123 - ( 97 -( encrypt_w[i] - n + 1)));
-                }
-                else
-                    word[i] = (char)(encrypt_w[i] - n + 1);
-            }
-            else if (encrypt_w[i] > 1071 && encrypt_w[i] < 1104)
-            {
-                if (encrypt_w[i] + n > 1104)
-                    word[i] = (char)(1071 - n + 1);
-                else
-                    word[i] = (char)(encrypt_w[i] - n + 1);
-            }
-            else if (encrypt_w[i] > 1039 && word[i] < 1072)
-            {
-                if (encrypt_w[i] + n > 1072)
-                    word[i] = (char)(1040 - n + 1);
-                else
-                    word[i] = (char)(encrypt_w[i] - n + 1);
-            }
-            else
-                word[i] = (char)(encrypt_w[i] - n + 1);
-            i++;
-        }
-        i = 0;
-        while (i < len)
-        {
-            code = (int)word[i];
-            System.out.printf("%d ", code);
-            i++;
-        }
-        i = 0;
-        while (i < len)
-        {
-            System.out.printf("%c", word[i]);
-            i++;
-        }
+        str = encrypt(str, n);
+        System.out.println(str);
+        str = encrypt(str, -n);
+        System.out.println(str);
         vvod_str.close();
         vvod_int.close();
 
