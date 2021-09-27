@@ -1,25 +1,11 @@
-<<<<<<< HEAD
-import java.util.Scanner;
-import java.io.*;
-=======
 // import java.util.Random;
 import java.util.Scanner;
 
->>>>>>> 37fa1f4bd51d4862dcda14c7a39eb97adb5e3b0d
 
 public class Lab1{
     public static void main(String[] args){
         Scanner vvod = new Scanner(System.in);
-<<<<<<< HEAD
-        System.out.print("Введите номер задания: ");
-        int n = vvod.nextInt();
-        if (n == 1)
-            zadanie1();
-        else
-            System.out.print("Invalid number\n");
-            return ;
-=======
-        System.out.print("Введите номер задания: \n");
+        System.out.print("Enter number of task: \n");
         int n = vvod.nextInt();
         if (n == 1)
             zadanie1();
@@ -36,22 +22,18 @@ public class Lab1{
             System.out.print("Invalid number\n");
         }
         vvod.close();
->>>>>>> 37fa1f4bd51d4862dcda14c7a39eb97adb5e3b0d
     }
 
 
     public static void zadanie1()
     {
-<<<<<<< HEAD
-=======
-        System.out.print("Задание 1\n");
->>>>>>> 37fa1f4bd51d4862dcda14c7a39eb97adb5e3b0d
+        System.out.print("1st task\n");
         int x;
         int y;
         int col = 6;
         int i = 0;
         Scanner vvod = new Scanner(System.in);
-        System.out.print("Введите сообщение, которое нужно зашифровать\n");
+        System.out.print("Enter a message\n");
         String str = vvod.nextLine();
         int len = str.length();
         int line;
@@ -145,9 +127,6 @@ public class Lab1{
             System.out.printf("\n");
             y++;
         }
-<<<<<<< HEAD
-    } 
-=======
         vvod.close();
     } 
 
@@ -189,30 +168,30 @@ public class Lab1{
 						encrypt_w[i] = (char)(word[i] + n);
 				}
             }
-            else if (word[i] > 1071 && word[i] < 1104)
-            {
-                if (word[i] + n > 1103)
-                    encrypt_w[i] = (char)(word[i] + n - 32);
-                else
-				{
-					if(word[i] + n < 1072)
-                    	encrypt_w[i] = (char)(word[i] + n + 32);
-					else
-						encrypt_w[i] = (char)(word[i] + n);
-				}
-            }
-            else if (word[i] > 1039 && word[i] < 1072)
-            {
-                if (word[i] + n > 1071)
-                    encrypt_w[i] = (char)(word[i] + n - 32);
-                else
-				{
-					if (word[i] < 1039)
-                    	encrypt_w[i] = (char)(word[i] + n + 32);
-					else
-						encrypt_w[i] = (char)(word[i] + n);
-				}
-            }
+            // else if (word[i] > 1071 && word[i] < 1104)
+            // {
+            //     if (word[i] + n > 1103)
+            //         encrypt_w[i] = (char)(word[i] + n - 32);
+            //     else
+			// 	{
+			// 		if(word[i] + n < 1072)
+            //         	encrypt_w[i] = (char)(word[i] + n + 32);
+			// 		else
+			// 			encrypt_w[i] = (char)(word[i] + n);
+			// 	}
+            // }
+            // else if (word[i] > 1039 && word[i] < 1072)
+            // {
+            //     if (word[i] + n > 1071)
+            //         encrypt_w[i] = (char)(word[i] + n - 32);
+            //     else
+			// 	{
+			// 		if (word[i] < 1039)
+            //         	encrypt_w[i] = (char)(word[i] + n + 32);
+			// 		else
+			// 			encrypt_w[i] = (char)(word[i] + n);
+			// 	}
+            // }
             else
                 encrypt_w[i] = word[i];
             i++;
@@ -226,10 +205,10 @@ public class Lab1{
     {
         Scanner vvod_str = new Scanner(System.in);
         Scanner vvod_int = new Scanner(System.in);
-        System.out.print("Задание 2\n");
-        System.out.print("Введите сдвиг\n");
+        System.out.print("2nd task\n");
+        System.out.print("Enter a shift\n");
         int n = vvod_int.nextInt();
-        System.out.print("Введите сообщение, которое нужно зашифровать\n");
+        System.out.print("Enter a message\n");
         String str = vvod_str.nextLine();
         System.out.printf("\n");
         str = encrypt_2(str, n);
@@ -342,19 +321,46 @@ public class Lab1{
 		}
 		i = 0;
 		int k = 0;
+        int k1;
+        int j1;
 		int j = 0;
 		i = 0;
 		while (i < len)
 		{
 			k = i_found(word[i], array);
 			j = j_found(word[i], array);
+			k1 = i_found(word[i + 1], array);
+			j1 = j_found(word[i + 1], array);
+
 			if (k == 0 && j == 0)
 				word[i] = ' ';
-			else if (j + 2 < 5)
-				word[i] = array[k][j + 2];
-			else
-				word[i] = array[k][j - 2];
-			i++;
+            else if (k > k1){
+                if (j == 3 && j1 == 4){
+                    word[i] = array[k][j + 1];
+                    word[i + 1] = array[k1][0];
+                }
+                // else if (j == 4)
+                //     word[i] = array[k][0];
+                else{
+                    word[i] = array[k][j + 2];
+                    word[i + 1] = array[k1][j1 - 2];
+                }
+            }
+            else {
+                if (j == 3 && j1 == 4){
+                    word[i] = array[k][j + 1];
+                    word[i + 1] = array[k1][0];
+                }
+                else{
+                word[i] = array[k][j + 2];
+                word[i + 1] = array[k1][j1 - 2];}
+            }
+            System.out.printf("%c", word[i]);
+			// else if (j + 2 < 5)
+			// 	word[i] = array[k][j + 2];
+			// else
+			// 	word[i] = array[k][j - 2];
+			i+= 2;
 		}
 		str = String.valueOf(word);
 		return (str);
@@ -379,8 +385,12 @@ public class Lab1{
 			j = j_found(word[i], array);
 			if (k == 0 && j == 0)
 				word[i] = ' ';
+            // else if (j + 2 <= 4)
+            //     word[i] = array[k][j + 2];
 			else if (j - 2 > 0)
 				word[i] = array[k][j - 2];
+            else if (j - 2 == 0)
+            word[i] = array[k][j - 2];
 			else
 				word[i] = array[k][j + 2];
 			i++;
@@ -391,8 +401,8 @@ public class Lab1{
 
 	public static void zadanie4(){
 		Scanner vvod = new Scanner(System.in);
-		System.out.println("Задание 4\n");
-		System.out.println("Введите сообщение, которое нужно зашифровать\n");
+		System.out.println("4th task\n");
+		System.out.println("Enter a message\n");
 		String str = vvod.nextLine();
 		String key = "table";
 		int len = str.length();
@@ -434,8 +444,8 @@ public class Lab1{
 		str = encrypt_4(str, array, len);
 		System.out.println(str);
 		// System.out.println(flag);
-		str = decrypt_4(str, array, len);
-		System.out.println(str);
+		// str = decrypt_4(str, array, len);
+		// System.out.println(str);
 		// else
 		// 	System.out.println("Even sentence\n");
 		// i = 0;
@@ -466,5 +476,4 @@ public class Lab1{
 		vvod.close();
 	}
 
->>>>>>> 37fa1f4bd51d4862dcda14c7a39eb97adb5e3b0d
 }
