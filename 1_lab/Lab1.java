@@ -319,22 +319,23 @@ public class Lab1{
             j++;
 			i++;}	 
         }
+		int len = j;
         i = 0;
 		str = String.valueOf(word);
         int k;
         int k1, j1;
 		
-       while (i < str.length() - 1)
-	   {
-		   k = i_found(word[i], array);
-		   j = j_found(word[i], array);
-		   k1 = i_found(word[i+1], array);
-		   j1 = j_found(word[i+1], array);
+    	while (i < len)
+		{
+			k = i_found(word[i], array);
+			j = j_found(word[i], array);
+			k1 = i_found(word[i+1], array);
+			j1 = j_found(word[i+1], array);
 		  	if (j1 == j)
-		   {
-			   word[i] = array[k][j + 2];
-			   word[i+1] = array[k1][j1+2];
-			   i = i+2;
+			{
+				word[i] = array[k][j + 2];
+				word[i+1] = array[k1][j1+2];
+				i = i+2;
 			}
 			else
 			{
@@ -344,7 +345,6 @@ public class Lab1{
 			}
 		}
 			String res = String.valueOf(word);
-			// System.out.println(res);
 			return(res);
     }
     
@@ -358,10 +358,11 @@ public class Lab1{
             i++;
             
         }
+		int len = i;
         i = 0;
         int k, j;
         int k1, j1;
-		while (i < str.length() - 2)
+		while (i < len - 2)
 		{
 			k = i_found(word[i], array);
 			j = j_found(word[i], array);
