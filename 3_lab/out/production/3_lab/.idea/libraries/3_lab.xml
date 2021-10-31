@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="3_lab">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/bcmail-jdk16-1.43.jar!/" />
+      <root url="jar://$PROJECT_DIR$/bctest-jdk14-169.jar!/" />
+      <root url="jar://$PROJECT_DIR$/bcpg-jdk16-143.jar!/" />
+      <root url="jar://$PROJECT_DIR$/bctsp-jdk16-143.jar!/" />
+      <root url="jar://$PROJECT_DIR$/bcprov-jdk16-1.43.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
